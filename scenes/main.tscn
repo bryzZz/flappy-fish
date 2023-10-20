@@ -9,21 +9,27 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_e15hp")
 
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 414.0
-offset_bottom = 896.0
-color = Color(0, 0.996078, 0.898039, 1)
-
 [node name="Ground" parent="." instance=ExtResource("3_oqo1o")]
 position = Vector2(0, 712)
 
 [node name="PipeSpawner" parent="." instance=ExtResource("4_6yk3v")]
 
 [node name="Player" parent="." instance=ExtResource("1_idvwv")]
-position = Vector2(112, 336)
+position = Vector2(256, 336)
 scale = Vector2(0.4, 0.4)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-640, -840)
+scale = Vector2(2.5, 2.5)
 anchor_mode = 0
+limit_top = 0
+limit_bottom = 896
 
 [node name="UI" parent="." instance=ExtResource("6_35nhq")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ColorRect" parent="ParallaxBackground"]
+offset_right = 500.0
+offset_bottom = 896.0
+color = Color(0, 0.996078, 0.898039, 1)

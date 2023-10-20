@@ -14,38 +14,41 @@ script = ExtResource("1_m8hdy")
 [node name="TopPipe" type="StaticBody2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="TopPipe"]
-offset_left = 24.0
-offset_top = -96.0
-offset_right = 72.0
-offset_bottom = 624.0
+offset_left = 24.0018
+offset_right = 72.0018
+offset_bottom = 720.0
 rotation = 3.14159
 color = Color(0.0196078, 1, 0.282353, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe"]
-position = Vector2(0, -456)
+position = Vector2(0.00184631, -360)
 shape = SubResource("RectangleShape2D_ti5b4")
 
 [node name="BottomPipe" type="StaticBody2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="BottomPipe"]
 offset_left = -24.0
-offset_top = 96.0
 offset_right = 24.0
-offset_bottom = 816.0
+offset_bottom = 720.0
 color = Color(0.0196078, 1, 0.282353, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
-position = Vector2(0, 456)
+position = Vector2(0, 360)
 shape = SubResource("RectangleShape2D_ti5b4")
 
 [node name="Complete" type="Area2D" parent="."]
+position = Vector2(-24, 2)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Complete"]
-position = Vector2(32, 0)
+position = Vector2(31, -2)
 shape = SubResource("RectangleShape2D_0y86b")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-3.8147e-06, 0)
+scale = Vector2(4.8, 1)
 
 [connection signal="body_entered" from="Complete" to="." method="_on_complete_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

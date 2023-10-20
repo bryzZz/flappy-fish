@@ -6,34 +6,57 @@ signal complete
 
 @onready var spawn_timer = $SpawnTimer
 var pipes_scene = preload("res://scenes/pipes.tscn")
-var speed = 0
 
+var last_pipe_spawn_position
 
-func _ready():
-	spawn_timer.timeout.connect(spawn_pipes)
+#var current_position
+#var current_pipe_spawn_position
+#var current_pipe
 
-func start():
-	spawn_timer.start()
+#func _ready():
+#	spawn_timer.timeout.connect(spawn_pipes)
 
-func spawn_pipes():
+#func _process(delta):
+#	print(current_pipe_spawn_position, current_position)
+#	if not current_pipe_spawn_position or not current_position:
+#		return
+#
+#	current_position -= Global.speed * delta
+	
+#	print(abs(current_pipe_spawn_position - current_position))
+	
+#	if abs(current_pipe_spawn_position - current_position) > 500:
+#		current_pipe = await spawn_pipes()
+#		current_pipe_spawn_position = current_pipe.position.x
+#		current_position = current_pipe.position.x
+
+#func start():
+#	current_pipe = await spawn_pipes(true)
+#	current_pipe_spawn_position = current_pipe.position.x
+#	current_position = current_pipe.position.x
+#	spawn_timer.start()
+
+func _process(delta):
+	pass
+
+func spawn_pipes(timeout = false):
+	if timeout:
+		await get_tree().create_timer(1.0).timeout
+	
 	var pipe = pipes_scene.instantiate()
 	add_child(pipe)
-	
-	var viewport_rect = get_viewport().get_camera_2d().get_viewport_rect()
-	pipe.position.x = viewport_rect.end.x
-	
-	pipe.position.y = randf_range(viewport_rect.size.y * 0.3, viewport_rect.size.y * 0.6)
-	pipe.speed = speed
+	last_pipe_spawn_position = pipe.spawn().x
 	
 	pipe.connect('complete', on_coplete)
+	
+	return pipe
 
 func on_coplete():
 	complete.emit()
 
 func stop():
 	spawn_timer.stop()
-	for pipe in get_children().filter(func (child): return child is Pipes):
-		(pipe as Pipes).speed = 0
+
 
 
 

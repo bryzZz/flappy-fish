@@ -4,11 +4,25 @@ class_name Pipes
 
 signal complete
 
-var speed = 0
-
 func _process(delta):
-	position.x -= speed * delta
+	pass
+#	position.x -= Global.speed * delta
 
+func spawn():
+	var pos = get_viewport().get_camera_2d().get_global_position()
+	var viewport_rect = get_viewport().get_camera_2d().get_viewport_rect()
+	
+	if Global.direction == "to_right":
+		position.x = pos.x + 515
+	if Global.direction == "to_left":
+		position.x = pos.x - 15
+	
+	get_node('TopPipe').position.y -= 150
+	get_node('BottomPipe').position.y += 150 
+	
+	position.y = randf_range(viewport_rect.size.y * 0.3, viewport_rect.size.y * 0.6)
+	2
+	return global_position
 
 func _on_complete_body_entered(body):
 	complete.emit()
