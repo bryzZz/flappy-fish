@@ -17,9 +17,6 @@ var is_started = false
 var is_stopped = false
 var direction = 'to_left'
 
-func _ready():
-	velocity = Vector2.ZERO
-
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
@@ -30,10 +27,6 @@ func _physics_process(delta):
 	
 	velocity.y += gravity * delta
 	velocity.limit_length(max_speed)
-	if Global.direction == 'to_right':
-		velocity.x = move_toward(velocity.x, 20000 * delta, 1000 * delta)
-	else:
-		velocity.x = move_toward(velocity.x, -20000 * delta, 1000 * delta)
 	
 	var collision = move_and_collide(velocity * delta)
 	
@@ -53,7 +46,7 @@ func jump():
 	velocity.y = jump_velocity
 
 func rotate_player():
-	if direction == 'to_left':
+	if Global.direction == 'to_right':
 		if velocity.y > 0 and rad_to_deg(sprite_2d.rotation) < 30:
 			sprite_2d.rotation += rotation_down_speed * deg_to_rad(1)
 		elif velocity.y < 0 and rad_to_deg(sprite_2d.rotation) > -30:
@@ -67,9 +60,6 @@ func rotate_player():
 func stop():
 	collision_shape_2d.disabled = true
 	is_stopped = true
-
-func change_direction():
-	direction = 'to_right'
 
 
 

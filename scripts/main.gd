@@ -5,8 +5,11 @@ extends Node
 @onready var ground = $Ground as Ground
 @onready var ui = $UI as UI
 
+var max_speed = 300
 var acceleration = 1
-
+var speed_step = 2
+var span_step = 3
+ 
 var points = 0
 
 func _ready():
@@ -18,10 +21,11 @@ func _physics_process(delta):
 	if not Global.is_game_started:
 		return
 	
-	Global.speed = clamp(Global.speed + acceleration, -300, 300)
+	Global.speed = clamp(Global.speed + acceleration, -max_speed, max_speed)
+
 
 func on_start_game():
-#	Global.speed = 300
+	Global.speed = 300
 	Global.is_game_started = true
 	acceleration = 1
 	
@@ -38,7 +42,9 @@ func on_point_scored():
 	points += 1
 	ui.update_points(points)
 	
-	if points == 5:
-		Global.direction = 'to_left'
-		acceleration = -15  
-		player.change_direction()
+	Global.span = max(100, Global.span - span_step)
+	max_speed = min(max_speed + speed_step, 500)
+	
+#	if points == 5:
+#		Global.direction = 'to_left'
+#		acceleration = -15
