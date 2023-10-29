@@ -23,7 +23,8 @@ Global="*res://scripts/global.gd"
 
 window/size/viewport_width=500
 window/size/viewport_height=896
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=5
 
 [input]
@@ -37,4 +38,5 @@ jump={
 
 [rendering]
 
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

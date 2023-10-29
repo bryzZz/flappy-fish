@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://bekirx3fp4ihf"]
+
+[ext_resource type="Script" path="res://scripts/pipes.gd" id="1_eg23i"]
+[ext_resource type="Texture2D" uid="uid://dr1mi1kfmrn52" path="res://assets/corral2.png" id="2_7ksaa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y86b"]
+size = Vector2(34, 400)
+
+[node name="Pipes1" type="Node2D"]
+script = ExtResource("1_eg23i")
+
+[node name="TopPipe" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="TopPipe"]
+position = Vector2(3.8147e-06, -360)
+rotation = 3.14159
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_7ksaa")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TopPipe"]
+polygon = PackedVector2Array(24, -72, 56, -128, 64, -216, 88, -256, 24, -416, 64, -440, 88, -400, 112, -416, 16, -632, -56, -632, -40, -576, -96, -496, -104, -384, -48, -384, -48, -288, 16, -224, 0, -112)
+
+[node name="BottomPipe" type="StaticBody2D" parent="."]
+rotation = 3.14159
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomPipe"]
+position = Vector2(3.8147e-06, -360)
+rotation = 3.14159
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_7ksaa")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomPipe"]
+polygon = PackedVector2Array(24, -72, 56, -128, 64, -216, 88, -256, 24, -416, 64, -440, 88, -400, 112, -416, 16, -632, -56, -632, -40, -576, -96, -496, -104, -384, -48, -384, -48, -288, 16, -224, 0, -112)
+
+[node name="Complete" type="Area2D" parent="."]
+visible = false
+position = Vector2(-24, 2)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Complete"]
+position = Vector2(31, -2)
+shape = SubResource("RectangleShape2D_0y86b")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-7.62939e-06, 0)
+scale = Vector2(19.2, 1)
+
+[connection signal="body_entered" from="Complete" to="." method="_on_complete_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

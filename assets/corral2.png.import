@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6un0e7oq8vss"
-path="res://.godot/imported/ground.jpg-b5b13425440c1e6693c351fb0bbc29e0.ctex"
+uid="uid://dr1mi1kfmrn52"
+path="res://.godot/imported/corral2.png-db2c1ceee6cd326f620de4efa89ea1fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ground.jpg"
-dest_files=["res://.godot/imported/ground.jpg-b5b13425440c1e6693c351fb0bbc29e0.ctex"]
+source_file="res://assets/corral2.png"
+dest_files=["res://.godot/imported/corral2.png-db2c1ceee6cd326f620de4efa89ea1fc.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 extends Node
 
-@onready var player = $Player as Player
+@onready var player = $Control2/Player
 @onready var pipe_spawner = $PipeSpawner as PipeSpawner
 @onready var ground = $Ground as Ground
 @onready var ui = $UI as UI
@@ -20,13 +20,15 @@ func _ready():
 func _physics_process(delta):
 	if not Global.is_game_started:
 		return
-	
-	Global.speed = clamp(Global.speed + acceleration, -max_speed, max_speed)
+
+	Global.speed = Global.speed + acceleration * delta
+	Global.speed = clamp(Global.speed, -max_speed, max_speed)
 
 
 func on_start_game():
 	Global.speed = 300
 	Global.is_game_started = true
+	Global.span = 300
 	acceleration = 1
 	
 	pipe_spawner.start()

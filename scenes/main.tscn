@@ -1,24 +1,72 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwj8wrlkr86k0"]
+[gd_scene load_steps=7 format=3 uid="uid://bwj8wrlkr86k0"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_e15hp"]
 [ext_resource type="PackedScene" uid="uid://cd3q7urrcb55m" path="res://scenes/player.tscn" id="1_idvwv"]
 [ext_resource type="PackedScene" uid="uid://tggm0cglg828" path="res://scenes/ground.tscn" id="3_oqo1o"]
 [ext_resource type="PackedScene" uid="uid://o78qi7re0py3" path="res://scenes/pipe_spawner.tscn" id="4_6yk3v"]
 [ext_resource type="PackedScene" uid="uid://ctro1f1qm7y5l" path="res://scenes/ui.tscn" id="6_35nhq"]
+[ext_resource type="Texture2D" uid="uid://8onpchtnh658" path="res://assets/background.png" id="6_s7v40"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_e15hp")
 
-[node name="Ground" parent="." instance=ExtResource("3_oqo1o")]
-position = Vector2(0, 712)
+[node name="Control3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -72.0
+offset_right = 2887.0
+offset_bottom = 3959.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_s7v40")
+expand_mode = 4
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="Ground" parent="Control" instance=ExtResource("3_oqo1o")]
+position = Vector2(0, -180)
 
 [node name="PipeSpawner" parent="." instance=ExtResource("4_6yk3v")]
 
-[node name="Player" parent="." instance=ExtResource("1_idvwv")]
-position = Vector2(256, 336)
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" parent="Control2" instance=ExtResource("1_idvwv")]
+position = Vector2(0, 0)
 scale = Vector2(0.4, 0.4)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Control2/Player"]
 position = Vector2(-640, -840)
 scale = Vector2(2.5, 2.5)
 anchor_mode = 0
@@ -26,10 +74,3 @@ limit_top = 0
 limit_bottom = 896
 
 [node name="UI" parent="." instance=ExtResource("6_35nhq")]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="Background" type="ColorRect" parent="ParallaxBackground"]
-offset_right = 500.0
-offset_bottom = 896.0
-color = Color(0, 0.996078, 0.898039, 1)

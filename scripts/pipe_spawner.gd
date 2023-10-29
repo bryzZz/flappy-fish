@@ -5,7 +5,7 @@ class_name PipeSpawner
 signal complete
 
 @onready var spawn_timer = $SpawnTimer
-var pipes_scene = preload("res://scenes/pipes.tscn")
+var pipe_variants = [preload("res://scenes/pipes1.tscn"), preload("res://scenes/pipes2.tscn")]
 
 var last_pipe_spawn_pos
 var last_pipe
@@ -30,7 +30,8 @@ func spawn_pipes(timeout = false):
 	if timeout:
 		await get_tree().create_timer(1.0).timeout
 	
-	last_pipe = pipes_scene.instantiate()
+	var index = randi() % pipe_variants.size()
+	last_pipe = pipe_variants[index].instantiate()
 	add_child(last_pipe)
 	last_pipe.spawn()
 	last_pipe_spawn_pos = last_pipe.position
