@@ -14,9 +14,10 @@ script = ExtResource("1_skxhs")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-40, 0)
+position = Vector2(34, 6.10352e-05)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_3y04x")
+offset = Vector2(-740, -0.000488281)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-39, 1)

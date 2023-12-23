@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctro1f1qm7y5l"]
+[gd_scene load_steps=7 format=3 uid="uid://ctro1f1qm7y5l"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_b48m7"]
+[ext_resource type="Texture2D" uid="uid://b0t7nfd2ss1l8" path="res://assets/coin.png" id="2_dslxy"]
+[ext_resource type="Texture2D" uid="uid://b874kt5ynubr2" path="res://assets/restart-bg.png" id="3_e3bko"]
+[ext_resource type="Texture2D" uid="uid://6ep41y8xefn8" path="res://assets/restart-btn.png" id="4_d06ux"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lq2a"]
 bg_color = Color(0, 0, 0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_b8j7o"]
-font_size = 36
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpjr1"]
-bg_color = Color(0.752941, 0.568627, 0, 1)
+font_size = 32
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_b48m7")
@@ -20,17 +20,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="HSplitContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
-alignment = 1
 
-[node name="PointsLabel" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_dslxy")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PointsLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -40,12 +47,6 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-size_flags_vertical = 4
-color = Color(1, 1, 0, 1)
-
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -54,58 +55,34 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6lq2a")
 tabs_visible = false
 drag_to_rearrange_enabled = true
 
-[node name="GameOverBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/GameOverBox"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 1
+offset_left = 85.0
+offset_top = 279.0
+offset_right = 1509.0
+offset_bottom = 1346.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_e3bko")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Control"]
 layout_mode = 2
+offset_top = 326.0
+offset_right = 468.0
+offset_bottom = 379.0
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_b8j7o")
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/TabContainer/GameOverBox"]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_tpjr1")
+[node name="Button" type="TextureButton" parent="MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 399.0
+offset_right = 365.0
+offset_bottom = 564.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("4_d06ux")
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/GameOverBox/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.5
-offset_top = -15.5
-offset_right = 32.5
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "Restart"
-
-[node name="Shop Button" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/GameOverBox"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Shop"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Back"
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "Shop"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/GameOverBox/Panel/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Control/Button" to="." method="_on_button_pressed"]

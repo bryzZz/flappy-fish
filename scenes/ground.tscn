@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c8t806nax7qte" path="res://assets/ground.png" id="2_fgd6y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54rc1"]
-size = Vector2(1280, 3)
+size = Vector2(2448, 3)
 
 [node name="Ground" type="Node2D"]
 script = ExtResource("1_fnyk1")
@@ -18,9 +18,9 @@ texture = ExtResource("2_fgd6y")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(640, 1.5)
+position = Vector2(1224, 1.5)
 shape = SubResource("RectangleShape2D_54rc1")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Ground"]
-position = Vector2(640, 18)
-scale = Vector2(64, 1)
+position = Vector2(1224, 18)
+scale = Vector2(122.4, 1)

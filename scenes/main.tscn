@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwj8wrlkr86k0"]
+[gd_scene load_steps=9 format=3 uid="uid://bwj8wrlkr86k0"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_e15hp"]
 [ext_resource type="PackedScene" uid="uid://cd3q7urrcb55m" path="res://scenes/player.tscn" id="1_idvwv"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://o78qi7re0py3" path="res://scenes/pipe_spawner.tscn" id="4_6yk3v"]
 [ext_resource type="PackedScene" uid="uid://ctro1f1qm7y5l" path="res://scenes/ui.tscn" id="6_35nhq"]
 [ext_resource type="Texture2D" uid="uid://8onpchtnh658" path="res://assets/background.png" id="6_s7v40"]
+[ext_resource type="Texture2D" uid="uid://by6b5bvor70kd" path="res://assets/logo.png" id="7_c25r7"]
+[ext_resource type="Texture2D" uid="uid://cbn61x5xf1kms" path="res://assets/start-btn.png" id="8_supa5"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_e15hp")
@@ -74,3 +76,13 @@ limit_top = 0
 limit_bottom = 896
 
 [node name="UI" parent="." instance=ExtResource("6_35nhq")]
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(250, 256)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_c25r7")
+
+[node name="Start" type="Sprite2D" parent="."]
+position = Vector2(250, 648)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_supa5")

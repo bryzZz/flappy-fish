@@ -4,6 +4,7 @@ extends Node
 @onready var pipe_spawner = $PipeSpawner as PipeSpawner
 @onready var ground = $Ground as Ground
 @onready var ui = $UI as UI
+@onready var logo = $Logo as Sprite2D
 
 var max_speed = 300
 var acceleration = 1
@@ -30,6 +31,11 @@ func on_start_game():
 	Global.is_game_started = true
 	Global.span = 300
 	acceleration = 1
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(logo, "modulate", Color.TRANSPARENT, 0.3)
+	tween.tween_property($Start, "modulate", Color.TRANSPARENT, 0.3)
+	tween.tween_callback(logo.queue_free)
 	
 	pipe_spawner.start()
 
