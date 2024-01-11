@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctro1f1qm7y5l"]
+[gd_scene load_steps=9 format=3 uid="uid://ctro1f1qm7y5l"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_b48m7"]
 [ext_resource type="Texture2D" uid="uid://b0t7nfd2ss1l8" path="res://assets/coin.png" id="2_dslxy"]
 [ext_resource type="Texture2D" uid="uid://b874kt5ynubr2" path="res://assets/restart-bg.png" id="3_e3bko"]
 [ext_resource type="Texture2D" uid="uid://6ep41y8xefn8" path="res://assets/restart-btn.png" id="4_d06ux"]
+[ext_resource type="Texture2D" uid="uid://by6b5bvor70kd" path="res://assets/logo.png" id="5_m073t"]
+[ext_resource type="Texture2D" uid="uid://cbn61x5xf1kms" path="res://assets/start-btn.png" id="6_tstdo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lq2a"]
 bg_color = Color(0, 0, 0, 0)
@@ -15,6 +17,7 @@ font_size = 32
 script = ExtResource("1_b48m7")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+modulate = Color(0.49, 0.49, 0.49, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -84,5 +87,19 @@ offset_right = 365.0
 offset_bottom = 564.0
 scale = Vector2(0.3, 0.3)
 texture_normal = ExtResource("4_d06ux")
+
+[node name="Logo" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
+light_mask = 2
+z_index = 11
+position = Vector2(216.4, 256.4)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_m073t")
+
+[node name="Start" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
+light_mask = 2
+z_index = 11
+position = Vector2(216.4, 648.4)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_tstdo")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Control/Button" to="." method="_on_button_pressed"]

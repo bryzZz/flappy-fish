@@ -10,6 +10,15 @@ func _ready():
 	points_label.text = "0"
 #	shop_button.connect("pressed", on_shop_button_pressed)
 
+func start():
+	var tween = get_tree().create_tween()
+	tween.tween_property($MarginContainer/VBoxContainer/Logo, "modulate", Color.TRANSPARENT, 0.3)
+	tween.tween_property($MarginContainer/VBoxContainer/Start, "modulate", Color.TRANSPARENT, 0.3)
+	tween.tween_callback($MarginContainer/VBoxContainer/Logo.queue_free)
+	tween.tween_callback($MarginContainer/VBoxContainer/Start.queue_free)
+#	($Logo).visibility = false
+#	($Start).visibility = false
+
 func update_points(points: int):
 	points_label.text = str(points)
 

@@ -32,10 +32,7 @@ func on_start_game():
 	Global.span = 300
 	acceleration = 1
 	
-	var tween = get_tree().create_tween()
-	tween.tween_property(logo, "modulate", Color.TRANSPARENT, 0.3)
-	tween.tween_property($Start, "modulate", Color.TRANSPARENT, 0.3)
-	tween.tween_callback(logo.queue_free)
+	ui.start()
 	
 	pipe_spawner.start()
 

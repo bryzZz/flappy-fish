@@ -27,6 +27,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=5
 
+[editor]
+
+movie_writer/movie_file="/home/nikita/isu/godot-games/Flappy Fish/movies/movie.avi"
+
 [input]
 
 jump={
